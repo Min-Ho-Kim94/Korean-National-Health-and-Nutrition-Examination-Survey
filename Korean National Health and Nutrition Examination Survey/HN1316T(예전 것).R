@@ -5,55 +5,55 @@ require(gmodels)
 library(pROC)
 
 
-KNHNES1315 <- read.spss("C:/Users/IT/Desktop/ï¿½ï¿½???ï¿½ï¿½ï¿½ ?Ð¼????? - hypertesion???? ï¿½ï¿½?? ?? ???Æ°? ??/Raw data/HN(13-15)_ALL(22948).sav", to.data.frame=T, use.value.labels=F)
-KNHNES16 <- read.spss("C:/Users/IT/Desktop/ï¿½ï¿½???ï¿½ï¿½ï¿½ ?Ð¼????? - hypertesion???? ï¿½ï¿½?? ?? ???Æ°? ??/Raw data/HN16_ALL.sav", to.data.frame=T, use.value.labels=F)
+KNHNES1315 <- read.spss("C:/Users/IT/Desktop/Á¹¾÷³í¹® ºÐ¼®ÆÄÀÏ - hypertesion¿¡¼­ Á¶±Ý ´õ ³ª¾Æ°£ °Í/Raw data/HN(13-15)_ALL(22948).sav", to.data.frame=T, use.value.labels=F)
+KNHNES16 <- read.spss("C:/Users/IT/Desktop/Á¹¾÷³í¹® ºÐ¼®ÆÄÀÏ - hypertesion¿¡¼­ Á¶±Ý ´õ ³ª¾Æ°£ °Í/Raw data/HN16_ALL.sav", to.data.frame=T, use.value.labels=F)
 
-KNHNES1315 <- read.spss("C:/Users/user/Desktop/181110??È£ ?? ?????? ?Û¾?/HN(13-15)_ALL(22948).sav", to.data.frame=T, use.value.labels=F)
-KNHNES16 <- read.spss("C:/Users/user/Desktop/181110??È£ ?? ?????? ?Û¾?/HN16_ALL.sav", to.data.frame=T, use.value.labels=F)
+KNHNES1315 <- read.spss("C:/Users/user/Desktop/181110¹ÎÈ£ Áý Æ÷½ºÅÍ ÀÛ¾÷/HN(13-15)_ALL(22948).sav", to.data.frame=T, use.value.labels=F)
+KNHNES16 <- read.spss("C:/Users/user/Desktop/181110¹ÎÈ£ Áý Æ÷½ºÅÍ ÀÛ¾÷/HN16_ALL.sav", to.data.frame=T, use.value.labels=F)
 
 KNHNES1315 <- KNHNES1315 %>% rename(SEX = sex)
 KNHNES16 <- KNHNES16 %>% rename(SEX = sex)
 
 ######################################################################################################################
 #                                                                                                                    #
-#                                                       ????????                                                     #
+#                                                       ¸ðÇü±¸Ãà                                                     #
 #                                                                                                                    # 
 ######################################################################################################################
 #########################################################################
 #                                                                       #
-#                               ????????                                #
+#                               º¯¼ö¼±ÅÃ                                #
 #                                                                       # 
 #########################################################################
 
-HN1315 <- KNHNES1315 %>% filter(age>=20) %>% # ?? 20?? ?Ì»?
+HN1315 <- KNHNES1315 %>% filter(age>=20) %>% # ¸¸ 20¼¼ ÀÌ»ó
   select(
     psu, wt_itvex, kstrata,
     HE_HP, DI1_dg, DI1_pr, DI1_2, HE_HPdg,
     age, SEX, BS1_1, BS3_1, HE_HPfh1, HE_HPfh2, HE_HPfh3, HE_BMI, HE_DM, HE_DMdg, DE1_dg, DE1_pr, DE1_pt,
     ho_incm, edu, occp,
     
-    # ?ß°? ????
+    # Ãß°¡ º¯¼ö
     HE_sbp, HE_dbp, BD1_11, BE3_31, BE5_1, DI3_dg, DI2_dg, DI2_2, HE_HCHOL, HE_HTG, HE_HDL_st2,
     BP8
-    #HE_HCHOL, HE_LHDL_st2, HE_HTG # dyslipidemia ????
+    #HE_HCHOL, HE_LHDL_st2, HE_HTG # dyslipidemia º¸·ù
     # <A hypertension risk score for middle-aged and older adults> risk factors. 09/27
     # <Age-Dependent Association Between Sleep Duration and Hypertension in the Adult Korean Population>
   )
 
-HN16 <- KNHNES16 %>% filter(age>=20) %>% # ?? 20?? ?Ì»?
+HN16 <- KNHNES16 %>% filter(age>=20) %>% # ¸¸ 20¼¼ ÀÌ»ó
   select(
     psu, wt_itvex, kstrata,
     HE_HP, DI1_dg, DI1_pr, DI1_2, HE_HPdg,
     age, SEX, BS1_1, BS3_1, HE_HPfh1, HE_HPfh2, HE_HPfh3, HE_BMI, HE_DM, HE_DMdg, DE1_dg, DE1_pr, DE1_pt,
     ho_incm, edu, occp,
     
-    # ?ß°? ????
+    # Ãß°¡ º¯¼ö
     HE_sbp, HE_dbp, BD1_11, BE3_31, BE5_1, DI3_dg, DI2_dg, DI2_2, HE_HCHOL, HE_HTG, HE_HDL_st2,
     Total_slp_wk,Total_slp_wd
   ) # <A hypertension risk score for middle-aged and older adults> risk factors. 09/27
-# ???Ê¼???, ?Òµ?, ??ï¿½ï¿½, ????, ï¿½ï¿½?Ö·? ????ï¿½ï¿½??ï¿½ï¿½?? ?ß°?
+# ±âÃÊ¼ö±Þ, ¼Òµæ, ±³À°, Á÷¾÷, À½ÁÖ·Â ºñ¸¸À¯º´À¯¹« Ãß°¡
 
-# ???? ?Ã°?
+# ¼ö¸é ½Ã°£
 HN1315$BP8[HN1315$BP8==88] <-NA
 HN1315$BP8[HN1315$BP8==99] <-NA
 HN16$Total_slp_wk[HN16$Total_slp_wk==8888] <-NA
@@ -77,10 +77,10 @@ HN1316NA <- HN1316 %>% filter(is.na(BD1_11)==T)
 
 #########################################################################
 #                                                                       #
-#                           ????????È®??                                #
+#                           º¯¼öºóµµÈ®ÀÎ                                #
 #                                                                       # 
 #########################################################################
-# 1?? ????
+# 1Â÷ º¯¼ö
 summary(HN1316T$wt_itvex)
 with(HN1316T, table(HE_HP, useNA = "always"))
 with(HN1316T, table(DI1_dg, useNA = "always"))
@@ -105,7 +105,7 @@ with(HN1316T, table(HE_HPfh2, useNA = "always"))
 with(HN1316T, table(HE_HPfh3, useNA = "always"))
 with(HN1316T, table(HE_HPfh1, HE_HPfh2, useNA = "always"))
 
-# 2?? ????
+# 2Â÷ º¯¼ö
 summary(HN1316T$HE_sbp)
 summary(HN1316T$HE_dbp)
 with(HN1316T, table(BD1_11, useNA = "always"))
@@ -116,13 +116,13 @@ summary(HN1316T$BP8)
 hist(HN1316T$BP8)
 
 
-with(HN1316T, table(DI2_dg, useNA = "always")) # ????ï¿½ï¿½?? ?Ì»????????? ï¿½ï¿½??
+with(HN1316T, table(DI2_dg, useNA = "always")) # ¼³¹®Á¶»ç ÀÌ»óÁöÁúÇ÷Áõ À¯¹«
 HN1316T$DI2_dg[HN1316T$DI2_dg==9] <-NA
-with(HN1316T, table(DI2_2, useNA = "always")) # ????ï¿½ï¿½?? ?Ì»????????? ?àº¹??
+with(HN1316T, table(DI2_2, useNA = "always")) # ¼³¹®Á¶»ç ÀÌ»óÁöÁúÇ÷Áõ ¾àº¹¿ë
 HN1316T$DI2_2[HN1316T$DI2_2==9] <-NA
-with(HN1316T, table(HE_HCHOL, useNA = "always")) # ????ï¿½ï¿½?? ???Ý·????×·????? ï¿½ï¿½??ï¿½ï¿½??
-with(HN1316T, table(HE_HTG, useNA = "always")) # ????ï¿½ï¿½?? ???ß¼????????? ï¿½ï¿½??ï¿½ï¿½??
-summary(HN1316T$HE_HDL_st2) # ????ï¿½ï¿½?? LDL-?Ý·????×·? ??È¯??
+with(HN1316T, table(HE_HCHOL, useNA = "always")) # °ËÁøÁ¶»ç °íÄÝ·¹½ºÅ×·ÑÇ÷Áõ À¯º´À¯¹«
+with(HN1316T, table(HE_HTG, useNA = "always")) # °ËÁøÁ¶»ç °íÁß¼ºÁö¹æÇ÷Áõ À¯º´À¯¹«
+summary(HN1316T$HE_HDL_st2) # °ËÁøÁ¶»ç LDL-ÄÝ·¹½ºÅ×·Ñ ÀüÈ¯½Ä
 
 
 
@@ -140,7 +140,7 @@ with(HN1316T, table(HE_HP,HE_sbp, useNA = "always"))
 
 #########################################################################
 #                                                                       #
-#                                   ?Úµ?                                #
+#                                   ÄÚµù                                #
 #                                                                       # 
 #########################################################################
 
@@ -195,7 +195,7 @@ HN1316T <- HN1316T %>%
     ALCOHOL = ifelse(BD1_11==8, 1, ifelse(BD1_11>=1 & BD1_11<=6, 2, NA)), 
     EXERCISE = ifelse((BE3_31==1 & BE5_1==1) | (BE3_31==99 & BE5_1==1) | (BE3_31==1 & BE5_1==9), 1, 
                       ifelse((BE3_31>=2 & BE3_31<=8)|(BE5_1>=2 & BE5_1 <=6), 2, NA)
-    ), # ?È±? ?Ç´? ?Ù·? ?îµ¿ ???? ????=1
+    ), # °È±â ¶Ç´Â ±Ù·Â ¿îµ¿ ÀüÇô ¾ÈÇÔ=1
     STROKE = ifelse(DI3_dg==0,1,ifelse(DI3_dg==1,2,NA)),
     DYSLIPIDEMIA = ifelse(DI2_dg==1 | DI2_2<=4 | HE_HCHOL==1 | HE_HTG==1 |HE_HDL_st2 <=40, 2, 
                           ifelse(DI2_dg==0 & (DI2_2==5 | DI2_2==8) & HE_HCHOL==0 & HE_HTG==0 & HE_HDL_st2 >=40, 1,
@@ -208,7 +208,7 @@ HN1316T <- HN1316T %>%
 #write.csv(HN1316T, file="HN1316T.csv", row.names=T)
 #########################################################################
 #                                                                       #
-#                         ??È¯????????È®??1                             #
+#                         º¯È¯º¯¼öºóµµÈ®ÀÎ1                             #
 #                                                                       # 
 #########################################################################
 
@@ -231,11 +231,11 @@ with(HN1316T, table(AGE, Y_HTN))
 
 #########################################################################
 #                                                                       #
-#                                   ??ï¿½ï¿½                                #
+#                                   º¸Á¤                                #
 #                                                                       # 
 #########################################################################
 
-# ???? ???? ????Ä¡ ï¿½ï¿½??
+# ¸¸¾à ¸ðµç °áÃøÄ¡ Á¦°Å
 #HN1316T <- HN1316T %>% filter(is.na(wt_itvex)==F & is.na(Y_HTN)==F &is.na(SMOKE)==F
 #                              & is.na(BMI)==F & is.na(FH_HTN)==F & is.na(DM)==F
 #                              & is.na(SBP)==F & is.na(DBP)==F & is.na(ALCOHOL)==F
@@ -749,7 +749,7 @@ HN1316T <- HN1316T %>%
   )
 #########################################################################
 #                                                                       #
-#                       ??È¯????????È®??2                               #
+#                       º¯È¯º¯¼öºóµµÈ®ÀÎ2                               #
 #                                                                       # 
 #########################################################################
 
@@ -801,7 +801,7 @@ with(HN1316T, table(FH_HTN, Y_HTN, useNA = "always"))%>% prop.table(1)
 
 #########################################################################
 #                                                                       #
-#                                  ?Úµ?                                 #
+#                                  ÄÚµù                                 #
 #                                                                       # 
 #########################################################################
 HN1316T <- HN1316T %>% mutate(Y_HTN=ifelse(Y_HTN==2,1,0))
@@ -854,7 +854,7 @@ table(test$Y_HTN) %>% prop.table()
 #Y_HTN $ AGE $ SEX $ SMOKE $ BMI $ FH_HTN $ DM $ SBP $ DBP $ ALCOHOL $ EXERCISE $ STROKE
 #########################################################################
 #                                                                       #
-#                             ??????Æ½????                              #
+#                             ·ÎÁö½ºÆ½¸ðÇü                              #
 #                                                                       # 
 #########################################################################
 
@@ -983,7 +983,7 @@ rm(aa,bb,cc,dd,ee)
 #####
 #####
 # # handmade
-# train_calibration <- read.csv("C:/Users/IT/Desktop/ï¿½ï¿½???ï¿½ï¿½ï¿½ ?Ð¼????? - hypertesion???? ï¿½ï¿½?? ?? ???Æ°? ??/train_calibration.csv")
+# train_calibration <- read.csv("C:/Users/IT/Desktop/Á¹¾÷³í¹® ºÐ¼®ÆÄÀÏ - hypertesion¿¡¼­ Á¶±Ý ´õ ³ª¾Æ°£ °Í/train_calibration.csv")
 # train_cal_reg <- lm(actual_probability ~ fitted_probability , data=train_calibration)
 # summary(train_cal_reg)
 # summary(train_cal_reg)$r.squared
@@ -999,7 +999,7 @@ rm(aa,bb,cc,dd,ee)
 # 
 # write.csv(test, file="test_calibration.csv", row.names=T)
 # # handmade
-# test_calibration <- read.csv("D:/??È£ ?Ú·?/4. Hypertension/Calibration/test_calibration.csv")
+# test_calibration <- read.csv("D:/¹ÎÈ£ ÀÚ·á/4. Hypertension/Calibration/test_calibration.csv")
 # test_cal_reg <- lm(actual_probability ~ fitted_probability , data=test_calibration)
 # summary(test_cal_reg)
 # summary(test_cal_reg)$r.squared
@@ -1061,7 +1061,7 @@ train <- train %>%
 
 write.csv(train, file="train_calibration.csv", row.names=T)
 # handmade
-train_calibration <- read.csv("D:/??È£ ?Ú·?/4. Hypertension/Calibration/train_calibration.csv")
+train_calibration <- read.csv("D:/¹ÎÈ£ ÀÚ·á/4. Hypertension/Calibration/train_calibration.csv")
 train_cal_reg <- lm(actual_probability ~ fitted_probability , data=train_calibration)
 summary(train_cal_reg)
 summary(train_cal_reg)$r.squared
@@ -1077,7 +1077,7 @@ test <- test %>%
 
 write.csv(test, file="test_calibration.csv", row.names=T)
 # handmade
-test_calibration <- read.csv("D:/??È£ ?Ú·?/4. Hypertension/Calibration/test_calibration.csv")
+test_calibration <- read.csv("D:/¹ÎÈ£ ÀÚ·á/4. Hypertension/Calibration/test_calibration.csv")
 test_cal_reg <- lm(actual_probability ~ fitted_probability , data=test_calibration)
 summary(test_cal_reg)
 summary(test_cal_reg)$r.squared
@@ -1093,7 +1093,7 @@ ggplot(test_calibration) +
 
 #########################################################################
 #                                                                       #
-#                   ???????? ?Ð·??? ????                                #
+#                   º£ÀÌÁö¾È ºÐ·ù±â ¸ðÇü                                #
 #                                                                       # 
 #########################################################################
 #write.csv(train, file="C:/Users/IT/Documents/train.csv", row.names=T)
@@ -1103,7 +1103,7 @@ ggplot(test_calibration) +
 ## ROC
 
 #train
-ROC_train <- read.csv("C:/Users/IT/Desktop/ï¿½ï¿½???ï¿½ï¿½ï¿½ ?Ð¼????? - hypertesion???? ï¿½ï¿½?? ?? ???Æ°? ??/Bayesian no weight ROC/train 15659.csv",header=T)
+ROC_train <- read.csv("C:/Users/IT/Desktop/Á¹¾÷³í¹® ºÐ¼®ÆÄÀÏ - hypertesion¿¡¼­ Á¶±Ý ´õ ³ª¾Æ°£ °Í/Bayesian no weight ROC/train 15659.csv",header=T)
 
 train_NBC_ROC <- roc(predictor = ROC_train$Prob_NBC, response = ROC_train$Y_HTN, positive="1", ci = T)
 train_NBC_ROC
@@ -1113,7 +1113,7 @@ ggroc(train_NBC_ROC, legacy.axes = T)
 
 #test
 
-ROC_test <- read.csv("C:/Users/IT/Desktop/ï¿½ï¿½???ï¿½ï¿½ï¿½ ?Ð¼????? - hypertesion???? ï¿½ï¿½?? ?? ???Æ°? ??/Bayesian no weight ROC/test 6709.csv",header=T)
+ROC_test <- read.csv("C:/Users/IT/Desktop/Á¹¾÷³í¹® ºÐ¼®ÆÄÀÏ - hypertesion¿¡¼­ Á¶±Ý ´õ ³ª¾Æ°£ °Í/Bayesian no weight ROC/test 6709.csv",header=T)
 
 test_NBC_ROC <- roc(predictor = ROC_test$Prob_NBC, response = ROC_test$Y_HTN, positive="1", ci = T)
 test_NBC_ROC
@@ -1217,7 +1217,7 @@ rm(aa,bb,cc,dd,ee)
 #####
 
 # Complex sampling Freq
-# train data?? ???? ?????? 
+# train data·Î ¸ðÇü ¸¸µé±â 
 HNsvy <- svydesign(ids= ~psu, strata= ~kstrata, weights = ~wt_itvex, data=train)
 summary(HNsvy)
 
@@ -1245,7 +1245,7 @@ svytable(~DYSLIPIDEMIA+Y_HTN, design = HNsvy)
 #ROC
 
 #train
-ROC_train <- read.csv("D:/??È£ ?Ú·?/6. Bayesian hypertension/verification/ROC/train 15659.csv",header=T)
+ROC_train <- read.csv("D:/¹ÎÈ£ ÀÚ·á/6. Bayesian hypertension/verification/ROC/train 15659.csv",header=T)
 
 train_NBC_ROC <- roc(predictor = ROC_train$Prob_NBC, response = ROC_train$Y_HTN, positive="1", ci = T)
 train_NBC_ROC
@@ -1255,7 +1255,7 @@ ggroc(train_NBC_ROC, legacy.axes = T)
 
 #test
 
-ROC_test <- read.csv("D:/??È£ ?Ú·?/6. Bayesian hypertension/verification/ROC/test 6709.csv",header=T)
+ROC_test <- read.csv("D:/¹ÎÈ£ ÀÚ·á/6. Bayesian hypertension/verification/ROC/test 6709.csv",header=T)
 
 test_NBC_ROC <- roc(predictor = ROC_test$Prob_NBC, response = ROC_test$Y_HTN, positive="1", ci = T)
 test_NBC_ROC
@@ -1273,10 +1273,10 @@ ggroc(test_NBC_ROC, legacy.axes = T)
 cali_train <- ROC_train %>% 
   mutate(fitted_probability = ROC_train$Prob_NBC)
 
-write.csv(cali_train, file="D:/??È£ ?Ú·?/6. Bayesian hypertension/verification/calibration/train_calibration.csv", row.names=T)
+write.csv(cali_train, file="D:/¹ÎÈ£ ÀÚ·á/6. Bayesian hypertension/verification/calibration/train_calibration.csv", row.names=T)
 
 # handmade
-train_calibration <- read.csv("D:/??È£ ?Ú·?/6. Bayesian hypertension/verification/calibration/train_calibration.csv")
+train_calibration <- read.csv("D:/¹ÎÈ£ ÀÚ·á/6. Bayesian hypertension/verification/calibration/train_calibration.csv")
 train_cal_reg <- lm(actual_probability ~ fitted_probability , data=train_calibration)
 summary(train_cal_reg)
 summary(train_cal_reg)$r.squared
@@ -1292,10 +1292,10 @@ ggplot(train_calibration) +
 cali_test <- ROC_test %>% 
   mutate(fitted_probability = ROC_test$Prob_NBC)
 
-write.csv(cali_test, file="D:/??È£ ?Ú·?/6. Bayesian hypertension/verification/calibration/test_calibration.csv", row.names=T)
+write.csv(cali_test, file="D:/¹ÎÈ£ ÀÚ·á/6. Bayesian hypertension/verification/calibration/test_calibration.csv", row.names=T)
 
 # handmade
-test_calibration <- read.csv("D:/??È£ ?Ú·?/6. Bayesian hypertension/verification/calibration/test_calibration.csv")
+test_calibration <- read.csv("D:/¹ÎÈ£ ÀÚ·á/6. Bayesian hypertension/verification/calibration/test_calibration.csv")
 test_cal_reg <- lm(actual_probability ~ fitted_probability , data=test_calibration)
 summary(test_cal_reg)
 summary(test_cal_reg)$r.squared
@@ -1313,7 +1313,7 @@ ggplot(test_calibration) +
 
 
 
-# ??Ã¼ ?Î±? 
+# ÀüÃ¼ ÀÎ±¸ 
 with(HN1316TT, table(SEX, useNA = "always"))
 HNsvy2 <- svydesign(ids= ~psu, strata= ~kstrata, weights = ~wt_itvex, data=HN1316TT)
 svytable(~SEX, design = HNsvy2)
